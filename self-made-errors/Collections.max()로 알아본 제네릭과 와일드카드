@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Main {
+    static class MyNumber{
+        public int value;
+
+        public MyNumber(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    static class MyNumber2 extends MyNumber implements Comparable<MyNumber>{
+
+        public MyNumber2(int value) {
+            super(value);
+        }
+
+        @Override
+        public int compareTo(MyNumber o) {
+            return this.value - o.getValue();
+        }
+    }
+
+    static class MyNumber3 extends MyNumber2 {
+
+        public MyNumber3(int value) {
+            super(value);
+        }
+    }
+
+    static class MyCollections {
+        public static <T extends Object & Comparable<? super T>> T max(Collection<T> coll) {
+            T max = null;
+            for(T t: coll) {
+                if(max == null || t.compareTo(max) > 0) {
+                    max = t;
+                }
+            }
+            return max;
+        }
+    }
+
+    public static void main(String args[]) {
+        List<MyNumber3> list = new ArrayList<>();
+        list.add(new MyNumber3(1));
+        list.add(new MyNumber3(3));
+        list.add(new MyNumber3(2));
+
+        MyNumber2 max = MyCollections.<MyNumber2>max(list); // error
+        System.out.println(max.getValue());
+        /*
+        * Collections.max() 메소드
+        * public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+        * 에서 <? extends T>가 아닐 경우 오류를 내기 위한 억지 테스트. 
+        *
+        * max()에서만큼은 Collection<T>가 오류를 일으킬 가능성은 제네릭 명시 이외엔 없어 보이지만,
+        * myNumbers2.addAll(myNumbers3) 정도의 유연성을 위헤
+        * Collection<? extends T>는 관례적으로 쓰인다고 보면 될 것 같다.
+        * */
+    }
+
+}
+
+
