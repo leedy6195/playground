@@ -6,7 +6,7 @@
 
 1. `extends` in `T extends Comparable<...>` 
   - Comparable의 구현 클래스여야 함
-  - 와일드카드 아님. PECS 적용 불가. 
+  - 와일드카드 아니므로 PECS 적용 대상이 아니다. 
   
 <br/>
   
