@@ -1,6 +1,29 @@
 import java.util.*;
 
 public class Main {
+    public static void main(String args[]) {
+        /*
+        * [ Collections.max() ]
+        * 1. public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+        *       다음과 같이 간소화할 수 있다.
+        *       <T extends Comparable<? super T>> T max(Collection<? extends T> coll)
+        * 1.1. <T extends Object & Comparable<? super T>>
+        * 1.1.1. T extends Comparable<...>
+        *           Comparable 구현 클래스여야 한다.
+        * 1.1.2. Comparable<? super T>
+        *           Comparable 구현은 부모 클래스여도 상관없다.
+        * 
+        * */
+        List<MyNumber3> list = new ArrayList<>();
+        list.add(new MyNumber3(1));
+        list.add(new MyNumber3(3));
+        list.add(new MyNumber3(2));
+
+        MyNumber2 max = MyCollections.<MyNumber2>max(list); // error
+        System.out.println(max.getValue());
+        
+    }
+    
     static class MyNumber{
         public int value;
 
@@ -44,24 +67,7 @@ public class Main {
         }
     }
 
-    public static void main(String args[]) {
-        List<MyNumber3> list = new ArrayList<>();
-        list.add(new MyNumber3(1));
-        list.add(new MyNumber3(3));
-        list.add(new MyNumber3(2));
-
-        MyNumber2 max = MyCollections.<MyNumber2>max(list); // error
-        System.out.println(max.getValue());
-        /*
-        * Collections.max() 메소드
-        * public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
-        * 에서 <? extends T>가 아닐 경우 오류를 내기 위한 억지 테스트. 
-        *
-        * max()에서만큼은 Collection<T>가 오류를 일으킬 가능성은 제네릭 명시 이외엔 없어 보이지만,
-        * myNumbers2.addAll(myNumbers3) 정도의 유연성을 위헤
-        * Collection<? extends T>는 관례적으로 쓰인다고 보면 될 것 같다.
-        * */
-    }
+    
 
 }
 
