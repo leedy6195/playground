@@ -19,8 +19,8 @@
   
 3. `extends` in `max(Collection<? extends T> coll)`
   - 제네릭 내부에 쓰인 클래스의 상속관계를 보장한다. 
-    - List<Number> numberList = intList.doSomething(...)
-    - numberList.addAll(intList)
+    - `List<Number> numberList = intList.doSomething(...)`
+    - `numberList.addAll(intList)`
   - producer의 assignable한 반환값이 필요하므로 `Producer Extends`로 요약 가능.
   
 <br/>
