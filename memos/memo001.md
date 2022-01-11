@@ -3,7 +3,7 @@
 > Remember PECS: "Producer Extends, Consumer Super".
 
 ### `<T extends Comparable<? super T>> T max(Collection<? extends T> coll)`
-<br/>
+
 1. `extends` in `T extends Comparable<...>` 
   - Comparable의 구현 클래스여야 함
   - 와일드카드 아님. PECS 적용 불가. 
