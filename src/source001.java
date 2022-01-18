@@ -4,6 +4,10 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/*
+*   https://programmers.co.kr/learn/courses/30/lessons/1836
+*/
+
 public class Main {
     static Tile[][] sboard;
     static int sm;
